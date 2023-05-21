@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 import svelte from './build/svelte.js';
 
 async function run() {
