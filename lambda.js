@@ -9,7 +9,7 @@ async function run() {
 
 	const response = await svelte({
 		env: process.env,
-		url: new URL(origin + '/'),
+		url: new URL(origin + '/about'),
 		method: 'GET',
 		headers: new Headers({
 			'accept-encoding': 'gzip, deflate, br',
@@ -19,6 +19,8 @@ async function run() {
 		body: null
 	});
 
+	console.log('Body:', await response.text());
+	console.log('Headers:', response.headers);
 	console.log('Status:', response.status);
 }
 

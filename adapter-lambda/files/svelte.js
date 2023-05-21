@@ -8,15 +8,14 @@ const baseOpts = {
 	url: '',
 	method: '',
 	headers: new Headers(),
-	body: '',
-	enconding: ''
+	body: null
 };
 
-export default async function svelte({ env, url, method, headers } = baseOpts) {
+export default async function svelte({ env, url, method, headers, body } = baseOpts) {
 	const req = new Request(url.toString(), {
 		method: method,
 		headers: headers,
-		body: null
+		body: body
 	});
 
 	const server = new Server(manifest);
@@ -24,6 +23,7 @@ export default async function svelte({ env, url, method, headers } = baseOpts) {
 
 	return await server.respond(req, {
 		platform: { req },
+		// TODO: getClientAddress
 		getClientAddress: () => '127.0.0.1'
 	});
 }

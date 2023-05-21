@@ -16,6 +16,7 @@ export default function (opts = {}) {
 
 		async adapt(builder) {
 			const tmp = builder.getBuildDirectory('adapter-lambda');
+			const prerenderOutput = `${out}/prerendered${builder.config.kit.paths.base}`;
 
 			builder.rimraf(out);
 			builder.rimraf(tmp);
@@ -23,7 +24,7 @@ export default function (opts = {}) {
 
 			builder.log.minor('Copying assets');
 			builder.writeClient(`${out}/client${builder.config.kit.paths.base}`);
-			builder.writePrerendered(`${out}/prerendered${builder.config.kit.paths.base}`);
+			builder.writePrerendered(prerenderOutput);
 
 			if (precompress) {
 				builder.log.minor('Compressing assets');
